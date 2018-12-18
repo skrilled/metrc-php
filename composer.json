@@ -1,0 +1,14 @@
+{
+    "name": "alternatehealth/metrc",
+    "description": "PHP Wrapper to the metrc api",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brandon DuBois",
+            "email": "brandon@canapass.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
