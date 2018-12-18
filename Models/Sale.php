@@ -2,7 +2,7 @@
 
 namespace MetrcApi\Models;
 
-class Sale
+class Sale extends ApiObject
 {
 
 }

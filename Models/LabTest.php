@@ -2,7 +2,7 @@
 
 namespace MetrcApi\Models;
 
-class LabTest
+class LabTest extends ApiObject
 {
 
 }

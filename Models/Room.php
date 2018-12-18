@@ -2,7 +2,7 @@
 
 namespace MetrcApi\Models;
 
-class Room
+class Room extends ApiObject
 {
 
 }

@@ -2,7 +2,7 @@
 
 namespace MetrcApi\Models;
 
-class Strain
+class Strain extends ApiObject
 {
 
 }

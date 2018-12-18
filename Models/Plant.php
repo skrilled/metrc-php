@@ -2,7 +2,7 @@
 
 namespace MetrcApi\Models;
 
-class Plant
+class Plant extends ApiObject
 {
 
 }

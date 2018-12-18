@@ -2,7 +2,7 @@
 
 namespace MetrcApi\Models;
 
-class Transfer
+class Transfer extends ApiObject
 {
 
 }

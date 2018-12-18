@@ -2,7 +2,7 @@
 
 namespace MetrcApi\Models;
 
-class Item
+class Item extends ApiObject
 {
 
 }

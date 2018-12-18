@@ -2,7 +2,7 @@
 
 namespace MetrcApi\Models;
 
-class Harvest
+class Harvest extends ApiObject
 {
 
 }

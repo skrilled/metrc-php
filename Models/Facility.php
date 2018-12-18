@@ -2,7 +2,7 @@
 
 namespace MetrcApi\Models;
 
-class Facility
+class Facility extends ApiObject
 {
 
 }

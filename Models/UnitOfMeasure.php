@@ -2,7 +2,7 @@
 
 namespace MetrcApi\Models;
 
-class UnitOfMeasure
+class UnitOfMeasure extends ApiObject
 {
 
 }

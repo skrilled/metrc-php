@@ -2,7 +2,7 @@
 
 namespace MetrcApi\Models;
 
-class PlantBatch
+class PlantBatch extends ApiObject
 {
 
 }
