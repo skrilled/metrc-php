@@ -120,11 +120,13 @@ class MetrcApi
     {
         $arr = [];
 
-        foreach($response->getResponse() as $k => $v) {
+        $responseArray = $response->getResponse();
+
+        foreach($responseArray as $k => $v) {
             $arr[$k] = new $class;
-            foreach($response[$k] as $k2 => $v2) {
-                $method = sprintf('set%s', ucwords($k));
-                $arr[$k]->{$method}($v);
+            foreach($responseArray[$k] as $k2 => $v2) {
+                $method = sprintf('set%s', ucwords($k2));
+                $arr[$k]->{$method}($v2);
             }
         }
 
