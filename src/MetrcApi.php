@@ -181,6 +181,32 @@ class MetrcApi
     }
 
     /**
+     * @param Item $item
+     * @return MetrcApiResponse
+     * @throws \Exception
+     */
+    public function createItem(Item $item): MetrcApiResponse
+    {
+        $this->route = '/items/v1/create';
+        $this->method = 'POST';
+        $response = $this->executeAction($item);
+        return $response;
+    }
+
+    /**
+     * @param Item $item
+     * @return MetrcApiResponse
+     * @throws \Exception
+     */
+    public function updateItem(Item $item): MetrcApiResponse
+    {
+        $this->route = '/items/v1/update';
+        $this->method = 'POST';
+        $response = $this->executeAction($item);
+        return $response;
+    }
+
+    /**
      * @return array|null
      * @throws \Exception
      */
@@ -300,7 +326,7 @@ class MetrcApi
 
     /**
      * @param Room $room
-     * @return bool
+     * @return MetrcApiResponse
      * @throws \Exception
      */
     public function createRoom(Room $room): MetrcApiResponse
@@ -313,7 +339,7 @@ class MetrcApi
 
     /**
      * @param Room $room
-     * @return bool
+     * @return MetrcApiResponse
      * @throws \Exception
      */
     public function updateRoom(Room $room): MetrcApiResponse
@@ -326,7 +352,7 @@ class MetrcApi
 
     /**
      * @param int|null $id
-     * @return bool
+     * @return MetrcApiResponse
      * @throws \Exception
      */
     public function deleteRoom(?int $id): MetrcApiResponse
