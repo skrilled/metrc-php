@@ -1,3 +1,3 @@
 # metrc-sdk
 
-PHP SDK/API for working with metrc (https://api-ca.metrc.com)
+PHP SDK/API for working with metrc (https://metrc.com)
