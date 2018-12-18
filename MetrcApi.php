@@ -77,6 +77,10 @@ class MetrcApi
             CURLOPT_RETURNTRANSFER => 1
         ]);
 
+        if($this->method != 'GET') {
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($this->method));
+        }
+
         $result = curl_exec($ch);
 
         $response = new MetrcApiResponse();
