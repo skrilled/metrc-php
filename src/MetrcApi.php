@@ -71,7 +71,7 @@ class MetrcApi
     {
         $base = $this->sandbox ? self::SANDBOX_URL : self::PRODUCTION_URL;
 
-        $ch = curl_init($base.$this->route.'?'.$this->licenseNumber);
+        $ch = curl_init($base.$this->route.'?licenseNumber='.$this->licenseNumber);
         curl_setopt_array($ch, [
             CURLOPT_HTTPHEADER => [
                 $this->getAuthenticationHeader(),
