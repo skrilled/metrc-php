@@ -91,7 +91,6 @@ class MetrcApi
             }
         }
 
-
         $result = curl_exec($ch);
 
         $response = new MetrcApiResponse();
@@ -305,6 +304,19 @@ class MetrcApi
     public function createRoom(Room $room): bool
     {
         $this->route = '/rooms/v1/create';
+        $this->method = 'POST';
+        $response = $this->executeAction($room);
+        return $response->getSuccess();
+    }
+
+    /**
+     * @param Room $room
+     * @return bool
+     * @throws \Exception
+     */
+    public function updateRoom(Room $room): bool
+    {
+        $this->route = '/rooms/v1/update';
         $this->method = 'POST';
         $response = $this->executeAction($room);
         return $response->getSuccess();

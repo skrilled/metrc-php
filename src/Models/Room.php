@@ -7,7 +7,7 @@ class Room extends ApiObject
     /**
      * @var int
      */
-    public $id;
+    public $id = null;
 
     /**
      * @var string
