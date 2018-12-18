@@ -45,4 +45,15 @@ class Room extends ApiObject
     {
         $this->name = $name;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'Id' => $this->id,
+            'Name' => $this->name
+        ];
+    }
 }

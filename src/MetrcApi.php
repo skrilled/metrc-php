@@ -67,7 +67,7 @@ class MetrcApi
      * @return MetrcApiResponse
      * @throws \Exception
      */
-    public function executeAction(): MetrcApiResponse
+    public function executeAction($obj = false): MetrcApiResponse
     {
         $base = $this->sandbox ? self::SANDBOX_URL : self::PRODUCTION_URL;
 
@@ -81,8 +81,16 @@ class MetrcApi
         ]);
 
         if($this->method != 'GET') {
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($this->method));
+            if($this->method == 'POST') {
+                curl_setopt($ch, CURLOPT_POST, true);
+                if($obj) {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([$obj->toArray()]));
+                }
+            } else {
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($this->method));
+            }
         }
+
 
         $result = curl_exec($ch);
 
@@ -298,7 +306,7 @@ class MetrcApi
     {
         $this->route = '/rooms/v1/create';
         $this->method = 'POST';
-        $response = $this->executeAction();
+        $response = $this->executeAction($room);
         return $response->getSuccess();
     }
 
