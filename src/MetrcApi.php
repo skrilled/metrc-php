@@ -290,6 +290,19 @@ class MetrcApi
     }
 
     /**
+     * @param Room $room
+     * @return bool
+     * @throws \Exception
+     */
+    public function createRoom(Room $room): bool
+    {
+        $this->route = '/rooms/v1/create';
+        $this->method = 'POST';
+        $response = $this->executeAction();
+        return $response->getSuccess();
+    }
+
+    /**
      * @param int|null $id
      * @return bool
      * @throws \Exception
