@@ -2,7 +2,6 @@
 
 namespace MetrcApi;
 
-use MetrcApi\Exception\InvalidMetrcResponseException;
 use MetrcApi\Models\Facility;
 use MetrcApi\Models\Harvest;
 use MetrcApi\Models\Item;
