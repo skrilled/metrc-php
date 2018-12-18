@@ -2,6 +2,7 @@
 
 namespace MetrcApi;
 
+use MetrcApi\Exception\InvalidMetrcResponseException;
 use MetrcApi\Models\Facility;
 use MetrcApi\Models\Harvest;
 use MetrcApi\Models\Item;
@@ -68,7 +69,7 @@ class MetrcApi
     /**
      * @param bool $obj
      * @return MetrcApiResponse
-     * @throws Exception\InvalidMetrcResponseException
+     * @throws \Exception|InvalidMetrcResponseException
      */
     private function executeAction($obj = false): MetrcApiResponse
     {
@@ -138,7 +139,7 @@ class MetrcApi
 
     /**
      * @return array|null
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getFacilities(): ?array
     {
@@ -150,7 +151,7 @@ class MetrcApi
     /**
      * @param string $type type filter (active|onhold|inactive)
      * @return array|null
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getHarvests($type = 'active'): ?array
     {
@@ -162,7 +163,7 @@ class MetrcApi
     /**
      * @param string $id
      * @return array|null
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getItem($id): ?Item
     {
@@ -174,7 +175,7 @@ class MetrcApi
     /**
      * @param string $type type filter (active|onhold|inactive)
      * @return array|null
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getItems($type = 'active'): ?array
     {
@@ -186,7 +187,7 @@ class MetrcApi
     /**
      * @param Item $item
      * @return MetrcApiResponse
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function createItem(Item $item): MetrcApiResponse
     {
@@ -199,7 +200,7 @@ class MetrcApi
     /**
      * @param Item $item
      * @return MetrcApiResponse
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function updateItem(Item $item): MetrcApiResponse
     {
@@ -211,7 +212,7 @@ class MetrcApi
 
     /**
      * @return array|null
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getItemCategories(): ?array
     {
@@ -223,7 +224,7 @@ class MetrcApi
     /**
      * @param $id
      * @return Package|null
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getPackage($id): ?Package
     {
@@ -235,7 +236,7 @@ class MetrcApi
     /**
      * @param string $type type filter (active|onhold|inactive)
      * @return array
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getPackages($type = 'active'): ?array
     {
@@ -246,7 +247,7 @@ class MetrcApi
 
     /**
      * @return array
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getPackageTypes(): ?array
     {
@@ -258,7 +259,7 @@ class MetrcApi
     /**
      * @param int|null $id
      * @return PlantBatch|null
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getPlantBatch($id): ?PlantBatch
     {
@@ -270,7 +271,7 @@ class MetrcApi
     /**
      * @param string $type type filter (active|inactive)
      * @return array
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getPlantBatches($type = 'active'): ?array
     {
@@ -282,7 +283,7 @@ class MetrcApi
     /**
      * @param int|null $id
      * @return Room|null
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getPlant(?int $id): ?Plant
     {
@@ -294,7 +295,7 @@ class MetrcApi
     /**
      * @param string $type type filter (vegetative|flowering|onhold|inactive)
      * @return array
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getPlants($type = 'active'): ?array
     {
@@ -306,7 +307,7 @@ class MetrcApi
     /**
      * @param int|null $id
      * @return Room|null
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getRoom(?int $id): ?Room
     {
@@ -318,7 +319,7 @@ class MetrcApi
     /**
      * @param string $type type filter (active|onhold|inactive)
      * @return array
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getRooms($type = 'active'): ?array
     {
@@ -330,7 +331,7 @@ class MetrcApi
     /**
      * @param Room $room
      * @return MetrcApiResponse
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function createRoom(Room $room): MetrcApiResponse
     {
@@ -343,7 +344,7 @@ class MetrcApi
     /**
      * @param Room $room
      * @return MetrcApiResponse
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function updateRoom(Room $room): MetrcApiResponse
     {
@@ -356,7 +357,7 @@ class MetrcApi
     /**
      * @param int|null $id
      * @return MetrcApiResponse
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function deleteRoom(?int $id): MetrcApiResponse
     {
@@ -369,7 +370,7 @@ class MetrcApi
     /**
      * @param $id
      * @return array
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getStrain($id): ?array
     {
@@ -380,7 +381,7 @@ class MetrcApi
 
     /**
      * @return array
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getStrains(): ?array
     {
@@ -392,7 +393,7 @@ class MetrcApi
     /**
      * @param train $strain
      * @return MetrcApiResponse
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function createStrain(train $strain): MetrcApiResponse
     {
@@ -405,7 +406,7 @@ class MetrcApi
     /**
      * @param strain $strain
      * @return MetrcApiResponse
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function updateStrain(Strain $strain): MetrcApiResponse
     {
@@ -418,7 +419,7 @@ class MetrcApi
     /**
      * @param int|null $id
      * @return MetrcApiResponse
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function deleteStrain(?int $id): MetrcApiResponse
     {
@@ -430,7 +431,7 @@ class MetrcApi
 
     /**
      * @return array
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function getSalesReceipts(): ?array
     {
@@ -442,7 +443,7 @@ class MetrcApi
     /**
      * @param SalesReceipt $receipt
      * @return MetrcApiResponse
-     * @throws Exception\InvalidMetrcResponseException
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function createSalesReceipt(SalesReceipt $receipt): MetrcApiResponse
     {
@@ -455,7 +456,7 @@ class MetrcApi
     /**
      * @param SalesReceipt $receipt
      * @return MetrcApiResponse
-     * @throws Exception\InvalidMetrcResponseException
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function updateSalesReceipt(SalesReceipt $receipt): MetrcApiResponse
     {
@@ -468,7 +469,7 @@ class MetrcApi
     /**
      * @param $id
      * @return MetrcApiResponse
-     * @throws \Exception
+     * @throws \Exception|InvalidMetrcResponseException
      */
     public function deleteSalesReceipt($id): MetrcApiResponse
     {
@@ -478,6 +479,11 @@ class MetrcApi
         return $response;
     }
 
+    /**
+     * @param LabTest $labTest
+     * @return MetrcApiResponse
+     * @throws \Exception|InvalidMetrcResponseException
+     */
     public function createLabTest(LabTest $labTest): MetrcApiResponse
     {
         $this->route = '/labtests/v1/record';
