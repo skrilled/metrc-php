@@ -11,6 +11,7 @@ use MetrcApi\Models\PackageType;
 use MetrcApi\Models\Plant;
 use MetrcApi\Models\PlantBatch;
 use MetrcApi\Models\Room;
+use MetrcApi\Models\Strain;
 
 class MetrcApi
 {
@@ -358,6 +359,68 @@ class MetrcApi
     public function deleteRoom(?int $id): MetrcApiResponse
     {
         $this->route = '/rooms/v1/' . $id;
+        $this->method = 'DELETE';
+        $response = $this->executeAction();
+        return $response;
+    }
+
+    /**
+     * @param $id
+     * @return array
+     * @throws \Exception
+     */
+    public function getStrain($id): ?array
+    {
+        $this->route = '/strains/v1/' . $id;
+        $response = $this->executeAction();
+        return $this->mapResponseToObject($response, Strain::class);
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function getStrains(): ?array
+    {
+        $this->route = '/strains/v1/active';
+        $response = $this->executeAction();
+        return $this->mapResponseToObjectArray($response, Strain::class);
+    }
+
+    /**
+     * @param train $strain
+     * @return MetrcApiResponse
+     * @throws \Exception
+     */
+    public function createStrain(train $strain): MetrcApiResponse
+    {
+        $this->route = '/strains/v1/create';
+        $this->method = 'POST';
+        $response = $this->executeAction($strain);
+        return $response;
+    }
+
+    /**
+     * @param strain $strain
+     * @return MetrcApiResponse
+     * @throws \Exception
+     */
+    public function updateStrain(Strain $strain): MetrcApiResponse
+    {
+        $this->route = '/strains/v1/update';
+        $this->method = 'POST';
+        $response = $this->executeAction($strain);
+        return $response;
+    }
+
+    /**
+     * @param int|null $id
+     * @return MetrcApiResponse
+     * @throws \Exception
+     */
+    public function deleteStrain(?int $id): MetrcApiResponse
+    {
+        $this->route = '/strains/v1/' . $id;
         $this->method = 'DELETE';
         $response = $this->executeAction();
         return $response;
