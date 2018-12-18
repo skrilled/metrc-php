@@ -246,6 +246,19 @@ class MetrcApi
     }
 
     /**
+     * @param Package $package
+     * @return MetrcApiResponse
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function createPackage(Package $package): MetrcApiResponse
+    {
+        $this->route = '/packages/v1/create';
+        $this->method = 'POST';
+        $response = $this->executeAction($package);
+        return $response;
+    }
+
+    /**
      * @return array
      * @throws \Exception|InvalidMetrcResponseException
      */
