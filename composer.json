@@ -12,8 +12,8 @@
     "minimum-stability": "dev",
     "require": {},
     "autoload": {
-        "psr-0": {
-            "MetrcApi": "src/"
+        "psr-4": {
+            "MetrcApi\\": "src/"
         }
     }
 }
