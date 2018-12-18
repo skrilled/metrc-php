@@ -63,7 +63,7 @@ class MetrcApiResponse
     public function setRawResponse($rawResponse)
     {
         try {
-            $this->setResponse(json_encode($rawResponse, true));
+            $this->setResponse(json_decode($rawResponse, true));
         }
         catch(\Exception $e) {
             throw new InvalidMetrcResponseException($rawResponse);
