@@ -15,6 +15,7 @@ use MetrcApi\Models\PlantBatch;
 use MetrcApi\Models\Room;
 use MetrcApi\Models\SalesReceipt;
 use MetrcApi\Models\Strain;
+use MetrcApi\Models\Transfer;
 
 class MetrcApi
 {
@@ -512,6 +513,24 @@ class MetrcApi
         $this->method = 'POST';
         $response = $this->executeAction($labTest);
         return $response;
+    }
+
+    /**
+     * @param string $type
+     * @param \DateTimeInterface $startDate
+     * @param \DateTimeInterface $stopDate
+     * @return array
+     * @throws InvalidMetrcResponseException
+     */
+    public function getTransfers($type = 'incoming', \DateTimeInterface $startDate = null, \DateTimeInterface $stopDate = null): ?array
+    {
+        $this->route = '/sales/v1/' . $type;
+        if($startDate && $stopDate) {
+            $this->queryParams['lastModifiedStart'] = $startDate->format(\DateTime::ISO8601);
+            $this->queryParams['lastModifiedEnd'] = $stopDate->format(\DateTime::ISO8601);
+        }
+        $response = $this->executeAction();
+        return $this->mapResponseToObjectArray($response, Transfer::class);
     }
 
 }
