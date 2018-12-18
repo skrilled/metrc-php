@@ -303,12 +303,12 @@ class MetrcApi
      * @return bool
      * @throws \Exception
      */
-    public function createRoom(Room $room): bool
+    public function createRoom(Room $room): MetrcApiResponse
     {
         $this->route = '/rooms/v1/create';
         $this->method = 'POST';
         $response = $this->executeAction($room);
-        return $response->getSuccess();
+        return $response;
     }
 
     /**
@@ -316,12 +316,12 @@ class MetrcApi
      * @return bool
      * @throws \Exception
      */
-    public function updateRoom(Room $room): bool
+    public function updateRoom(Room $room): MetrcApiResponse
     {
         $this->route = '/rooms/v1/update';
         $this->method = 'POST';
         $response = $this->executeAction($room);
-        return $response->getSuccess();
+        return $response;
     }
 
     /**
@@ -329,12 +329,12 @@ class MetrcApi
      * @return bool
      * @throws \Exception
      */
-    public function deleteRoom(?int $id): bool
+    public function deleteRoom(?int $id): MetrcApiResponse
     {
         $this->route = '/rooms/v1/' . $id;
         $this->method = 'DELETE';
         $response = $this->executeAction();
-        return $response->getSuccess();
+        return $response;
     }
 
 }
