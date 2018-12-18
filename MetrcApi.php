@@ -182,7 +182,7 @@ class MetrcApi
      * @return bool
      * @throws \Exception
      */
-    public function deleteRoom(?int $id): ?Room
+    public function deleteRoom(?int $id): bool
     {
         $this->route = '/rooms/v1/' . $id;
         $this->method = 'DELETE';
