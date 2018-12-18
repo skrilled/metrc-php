@@ -6,11 +6,13 @@ use MetrcApi\Models\Facility;
 use MetrcApi\Models\Harvest;
 use MetrcApi\Models\Item;
 use MetrcApi\Models\ItemCategory;
+use MetrcApi\Models\LabTest;
 use MetrcApi\Models\Package;
 use MetrcApi\Models\PackageType;
 use MetrcApi\Models\Plant;
 use MetrcApi\Models\PlantBatch;
 use MetrcApi\Models\Room;
+use MetrcApi\Models\SalesReceipt;
 use MetrcApi\Models\Strain;
 
 class MetrcApi
@@ -84,11 +86,11 @@ class MetrcApi
         if($this->method != 'GET') {
             if($this->method == 'POST') {
                 curl_setopt($ch, CURLOPT_POST, true);
-                if($obj) {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([$obj->toArray()]));
-                }
             } else {
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($this->method));
+            }
+            if($obj) {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([$obj->toArray()]));
             }
         }
 
@@ -423,6 +425,64 @@ class MetrcApi
         $this->route = '/strains/v1/' . $id;
         $this->method = 'DELETE';
         $response = $this->executeAction();
+        return $response;
+    }
+
+    /**
+     * @return array
+     * @throws \Exception
+     */
+    public function getSalesReceipts(): ?array
+    {
+        $this->route = '/sales/v1/receipts';
+        $response = $this->executeAction();
+        return $this->mapResponseToObjectArray($response, SalesReceipt::class);
+    }
+
+    /**
+     * @param SalesReceipt $receipt
+     * @return MetrcApiResponse
+     * @throws Exception\InvalidMetrcResponseException
+     */
+    public function createSalesReceipt(SalesReceipt $receipt): MetrcApiResponse
+    {
+        $this->route = '/sales/v1/receipts';
+        $this->method = 'POST';
+        $response = $this->executeAction($receipt);
+        return $response;
+    }
+
+    /**
+     * @param SalesReceipt $receipt
+     * @return MetrcApiResponse
+     * @throws Exception\InvalidMetrcResponseException
+     */
+    public function updateSalesReceipt(SalesReceipt $receipt): MetrcApiResponse
+    {
+        $this->route = '/sales/v1/receipts';
+        $this->method = 'PUT';
+        $response = $this->executeAction($receipt);
+        return $response;
+    }
+
+    /**
+     * @param $id
+     * @return MetrcApiResponse
+     * @throws \Exception
+     */
+    public function deleteSalesReceipt($id): MetrcApiResponse
+    {
+        $this->route = '/sales/v1/receipts/' . $id;
+        $this->method = 'DELETE';
+        $response = $this->executeAction();
+        return $response;
+    }
+
+    public function createLabTest(LabTest $labTest): MetrcApiResponse
+    {
+        $this->route = '/labtests/v1/record';
+        $this->method = 'POST';
+        $response = $this->executeAction($labTest);
         return $response;
     }
 
