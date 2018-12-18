@@ -51,6 +51,8 @@ class MetrcApi
      */
     private $route = null;
 
+    private $queryParams;
+
     /**
      * MetrcApi constructor.
      * @param string $username
@@ -64,6 +66,9 @@ class MetrcApi
         $this->password      = $password;
         $this->licenseNumber = $licenseNumber;
         $this->sandbox       = $sandbox;
+        $this->queryParams   = [
+            'licenseNumber' => $this->licenseNumber
+        ];
     }
 
     /**
@@ -75,7 +80,7 @@ class MetrcApi
     {
         $base = $this->sandbox ? self::SANDBOX_URL : self::PRODUCTION_URL;
 
-        $ch = curl_init($base.$this->route.'?licenseNumber='.$this->licenseNumber);
+        $ch = curl_init($base.$this->route.'?'.http_build_query($this->queryParams));
         curl_setopt_array($ch, [
             CURLOPT_HTTPHEADER => [
                 $this->getAuthenticationHeader(),
@@ -266,7 +271,7 @@ class MetrcApi
     {
         $this->route = '/packages/v1/types';
         $response = $this->executeAction();
-        return $this->mapResponseToObjectArray($response, PackageType::class);
+        return $response->getResponse();
     }
 
     /**
@@ -443,12 +448,16 @@ class MetrcApi
     }
 
     /**
+     * @param \DateTimeInterface $startDate
+     * @param \DateTimeInterface $stopDate
      * @return array
-     * @throws \Exception|InvalidMetrcResponseException
+     * @throws InvalidMetrcResponseException
      */
-    public function getSalesReceipts(): ?array
+    public function getSalesReceipts(\DateTimeInterface $startDate, \DateTimeInterface $stopDate): ?array
     {
         $this->route = '/sales/v1/receipts';
+        $this->queryParams['lastModifiedStart'] = $startDate->format(\DateTime::ISO8601);
+        $this->queryParams['lastModifiedEnd']   = $stopDate->format(\DateTime::ISO8601);
         $response = $this->executeAction();
         return $this->mapResponseToObjectArray($response, SalesReceipt::class);
     }
