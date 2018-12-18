@@ -14,7 +14,6 @@ use MetrcApi\Models\Room;
 
 class MetrcApi
 {
-
     const SANDBOX_URL = 'https://sandbox-api-ca.metrc.com';
     const PRODUCTION_URL = 'https://api-ca.metrc.com';
 
@@ -64,10 +63,11 @@ class MetrcApi
     }
 
     /**
+     * @param bool $obj
      * @return MetrcApiResponse
-     * @throws \Exception
+     * @throws Exception\InvalidMetrcResponseException
      */
-    public function executeAction($obj = false): MetrcApiResponse
+    private function executeAction($obj = false): MetrcApiResponse
     {
         $base = $this->sandbox ? self::SANDBOX_URL : self::PRODUCTION_URL;
 
