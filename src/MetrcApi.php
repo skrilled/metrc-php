@@ -141,7 +141,7 @@ class MetrcApi
     {
         $this->route = '/facilities/v1/';
         $response = $this->executeAction();
-        return $this->mapResponseToObject($response, Facility::class);
+        return $this->mapResponseToObjectArray($response, Facility::class);
     }
 
     /**
@@ -153,7 +153,7 @@ class MetrcApi
     {
         $this->route = '/harvests/v1/' . $type;
         $response = $this->executeAction();
-        return $this->mapResponseToObject($response, Harvest::class);
+        return $this->mapResponseToObjectArray($response, Harvest::class);
     }
 
     /**
@@ -177,7 +177,7 @@ class MetrcApi
     {
         $this->route = '/items/v1/' . $type;
         $response = $this->executeAction();
-        return $this->mapResponseToObject($response, Item::class);
+        return $this->mapResponseToObjectArray($response, Item::class);
     }
 
     /**
@@ -188,7 +188,7 @@ class MetrcApi
     {
         $this->route = '/items/v1/categories';
         $response = $this->executeAction();
-        return $this->mapResponseToObject($response, ItemCategory::class);
+        return $this->mapResponseToObjectArray($response, ItemCategory::class);
     }
 
     /**
