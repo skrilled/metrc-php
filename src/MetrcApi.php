@@ -97,11 +97,11 @@ class MetrcApi
         return sprintf("Authorization: Basic %s", base64_encode($this->username.":".$this->password));
     }
 
-    private function mapResponseToObject($response, $class)
+    private function mapResponseToObject(MetrcApiResponse $response, $class)
     {
         $obj = new $class;
 
-        foreach($response as $k => $v) {
+        foreach($response->getResponse() as $k => $v) {
             $method = sprintf('set%s', ucwords($k));
             $obj->{$method}($v);
         }
@@ -109,11 +109,11 @@ class MetrcApi
         return $obj;
     }
 
-    private function mapResponseToObjectArray($response, $class)
+    private function mapResponseToObjectArray(MetrcApiResponse $response, $class)
     {
         $arr = [];
 
-        foreach($response as $k => $v) {
+        foreach($response->getResponse() as $k => $v) {
             $arr[$k] = new $class;
             foreach($response[$k] as $k2 => $v2) {
                 $method = sprintf('set%s', ucwords($k));
