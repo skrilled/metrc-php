@@ -10,7 +10,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+      "ext-curl": "*",
+      "ext-json": "*"
+    },
     "autoload": {
         "psr-4": {
             "MetrcApi\\": "src/"

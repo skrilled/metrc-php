@@ -3,6 +3,7 @@
 namespace MetrcApi;
 
 use MetrcApi\Exception\InvalidMetrcResponseException;
+use MetrcApi\Models\ApiObject;
 use MetrcApi\Models\Facility;
 use MetrcApi\Models\Harvest;
 use MetrcApi\Models\Item;
@@ -12,6 +13,7 @@ use MetrcApi\Models\Package;
 use MetrcApi\Models\PackageType;
 use MetrcApi\Models\Plant;
 use MetrcApi\Models\PlantBatch;
+use MetrcApi\Models\PlantBatchPlanting;
 use MetrcApi\Models\Room;
 use MetrcApi\Models\SalesReceipt;
 use MetrcApi\Models\Strain;
@@ -73,7 +75,7 @@ class MetrcApi
     }
 
     /**
-     * @param bool $obj
+     * @param bool|ApiObject $obj
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
      */
@@ -97,7 +99,19 @@ class MetrcApi
                 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($this->method));
             }
             if($obj) {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([$obj->toArray()]));
+                if(is_iterable($obj)) {
+                    $objects = [];
+                    /** @var ApiObject $o */
+                    foreach($obj as $o) {
+                        $objects[] = $o;
+                    }
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+                        $objects
+                    ]));
+
+                } else {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([$obj->toArray()]));
+                }
             }
         }
 
@@ -297,6 +311,47 @@ class MetrcApi
         $this->route = '/plantbatches/v1/' . $type;
         $response = $this->executeAction();
         return $this->mapResponseToObjectArray($response, PlantBatch::class);
+    }
+
+    /**
+     * @param PlantBatchPlanting $planting
+     * @return MetrcApiResponse
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function createPlanting(PlantBatchPlanting $planting): MetrcApiResponse
+    {
+        $this->route = '/plantbatches/v1/createplantings';
+        $this->method = 'POST';
+        $response = $this->executeAction($planting);
+        return $response;
+    }
+
+    /**
+     * @param array $plantings
+     * @return MetrcApiResponse
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function createPlantings(array $plantings): MetrcApiResponse
+    {
+        $this->route = '/plantbatches/v1/createplantings';
+        $this->method = 'POST';
+        $response = $this->executeAction(
+            $plantings
+        );
+        return $response;
+    }
+
+    /**
+     * @param PlantBatchPlanting $planting
+     * @return MetrcApiResponse
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function changeGrowthPhase(PlantBatchPlanting $planting): MetrcApiResponse
+    {
+        $this->route = '/plantbatches/v1/changegrowthphase';
+        $this->method = 'POST';
+        $response = $this->executeAction($planting);
+        return $response;
     }
 
     /**
