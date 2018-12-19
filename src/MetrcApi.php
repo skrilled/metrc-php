@@ -13,6 +13,7 @@ use MetrcApi\Models\Package;
 use MetrcApi\Models\PackageType;
 use MetrcApi\Models\Plant;
 use MetrcApi\Models\PlantBatch;
+use MetrcApi\Models\PlantBatchDestruction;
 use MetrcApi\Models\PlantBatchPlanting;
 use MetrcApi\Models\PlantBatchPlantingGrowthPhase;
 use MetrcApi\Models\Room;
@@ -352,6 +353,19 @@ class MetrcApi
         $this->route = '/plantbatches/v1/changegrowthphase';
         $this->method = 'POST';
         $response = $this->executeAction($planting);
+        return $response;
+    }
+
+    /**
+     * @param PlantBatchDestruction $batchDestruction
+     * @return MetrcApiResponse
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function destroyPlantBatch(PlantBatchDestruction $batchDestruction): MetrcApiResponse
+    {
+        $this->route = '/plantbatches/v1/destroy';
+        $this->method = 'POST';
+        $response = $this->executeAction($batchDestruction);
         return $response;
     }
 
