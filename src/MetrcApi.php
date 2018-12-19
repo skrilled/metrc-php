@@ -503,6 +503,17 @@ class MetrcApi
     }
 
     /**
+     * @return array|null
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function getLabTestTypes(): ?array
+    {
+        $this->route = '/labtests/v1/types';
+        $response = $this->executeAction();
+        return $response->getResponse();
+    }
+
+    /**
      * @param LabTest $labTest
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
