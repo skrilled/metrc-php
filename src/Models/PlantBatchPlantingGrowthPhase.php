@@ -22,6 +22,11 @@ class PlantBatchPlantingGrowthPhase extends ApiObject
     public $startingTag;
 
     /**
+     * @var string
+     */
+    public $growthPhase;
+
+    /**
      * @var string|null
      */
     public $newRoom;
@@ -90,6 +95,22 @@ class PlantBatchPlantingGrowthPhase extends ApiObject
     }
 
     /**
+     * @return string
+     */
+    public function getGrowthPhase(): string
+    {
+        return $this->growthPhase;
+    }
+
+    /**
+     * @param string $growthPhase
+     */
+    public function setGrowthPhase(string $growthPhase): void
+    {
+        $this->growthPhase = $growthPhase;
+    }
+
+    /**
      * @return string|null
      */
     public function getNewRoom(): ?string
@@ -148,11 +169,12 @@ class PlantBatchPlantingGrowthPhase extends ApiObject
     {
         return [
             'Name' => $this->getName(),
-            'Type' => $this->getType(),
             'Count' => $this->getCount(),
-            'Strain' => $this->getStrain(),
-            'PatientLicenseNumber' => $this->getPatientLicenseNumber(),
-            'ActualDate' => $this->actualDate->format('Y-m-d')
+            'StartingTag' => $this->getStartingTag(),
+            'GrowthPhase' => $this->getGrowthPhase(),
+            'NewRoom' => $this->getNewRoom(),
+            'GrowthDate' => $this->growthDate->format('Y-m-d'),
+            'PatientLicenseNumber' => $this->getPatientLicenseNumber()
         ];
     }
 }

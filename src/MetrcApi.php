@@ -14,6 +14,7 @@ use MetrcApi\Models\PackageType;
 use MetrcApi\Models\Plant;
 use MetrcApi\Models\PlantBatch;
 use MetrcApi\Models\PlantBatchPlanting;
+use MetrcApi\Models\PlantBatchPlantingGrowthPhase;
 use MetrcApi\Models\Room;
 use MetrcApi\Models\SalesReceipt;
 use MetrcApi\Models\Strain;
@@ -342,11 +343,11 @@ class MetrcApi
     }
 
     /**
-     * @param PlantBatchPlanting $planting
+     * @param PlantBatchPlantingGrowthPhase $planting
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
      */
-    public function changeGrowthPhase(PlantBatchPlanting $planting): MetrcApiResponse
+    public function changeGrowthPhase(PlantBatchPlantingGrowthPhase $planting): MetrcApiResponse
     {
         $this->route = '/plantbatches/v1/changegrowthphase';
         $this->method = 'POST';
