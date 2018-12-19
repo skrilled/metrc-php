@@ -449,6 +449,18 @@ class MetrcApi
     }
 
     /**
+     * @param $id
+     * @return array
+     * @throws InvalidMetrcResponseException
+     */
+    public function getSalesReceipt($id): ?array
+    {
+        $this->route = '/sales/v1/receipts/' . $id;
+        $response = $this->executeAction();
+        return $this->mapResponseToObject($response, SalesReceipt::class);
+    }
+
+    /**
      * @param \DateTimeInterface $startDate
      * @param \DateTimeInterface $stopDate
      * @return array
