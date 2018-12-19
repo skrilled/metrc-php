@@ -20,22 +20,22 @@ class Strain extends ApiObject
     public $testingStatus;
 
     /**
-     * @var float
+     * @var float|null
      */
     public $thcLevel;
 
     /**
-     * @var float
+     * @var float|null
      */
     public $cbdLevel;
 
     /**
-     * @var float
+     * @var float|null
      */
     public $indicaPercentage;
 
     /**
-     * @var float
+     * @var float|null
      */
     public $sativaPercentage;
 
@@ -90,7 +90,7 @@ class Strain extends ApiObject
     /**
      * @return float
      */
-    public function getThcLevel(): float
+    public function getThcLevel(): ?float
     {
         return $this->thcLevel;
     }
@@ -98,7 +98,7 @@ class Strain extends ApiObject
     /**
      * @param float $thcLevel
      */
-    public function setThcLevel(float $thcLevel): void
+    public function setThcLevel(?float $thcLevel): void
     {
         $this->thcLevel = $thcLevel;
     }
@@ -106,7 +106,7 @@ class Strain extends ApiObject
     /**
      * @return float
      */
-    public function getCbdLevel(): float
+    public function getCbdLevel(): ?float
     {
         return $this->cbdLevel;
     }
@@ -114,7 +114,7 @@ class Strain extends ApiObject
     /**
      * @param float $cbdLevel
      */
-    public function setCbdLevel(float $cbdLevel): void
+    public function setCbdLevel(?float $cbdLevel): void
     {
         $this->cbdLevel = $cbdLevel;
     }
@@ -122,7 +122,7 @@ class Strain extends ApiObject
     /**
      * @return float
      */
-    public function getIndicaPercentage(): float
+    public function getIndicaPercentage(): ?float
     {
         return $this->indicaPercentage;
     }
@@ -130,7 +130,7 @@ class Strain extends ApiObject
     /**
      * @param float $indicaPercentage
      */
-    public function setIndicaPercentage(float $indicaPercentage): void
+    public function setIndicaPercentage(?float $indicaPercentage): void
     {
         $this->indicaPercentage = $indicaPercentage;
     }
@@ -138,7 +138,7 @@ class Strain extends ApiObject
     /**
      * @return float
      */
-    public function getSativaPercentage(): float
+    public function getSativaPercentage(): ?float
     {
         return $this->sativaPercentage;
     }
@@ -146,7 +146,7 @@ class Strain extends ApiObject
     /**
      * @param float $sativaPercentage
      */
-    public function setSativaPercentage(float $sativaPercentage): void
+    public function setSativaPercentage(?float $sativaPercentage): void
     {
         $this->sativaPercentage = $sativaPercentage;
     }

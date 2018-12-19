@@ -10,7 +10,6 @@ use MetrcApi\Models\Item;
 use MetrcApi\Models\ItemCategory;
 use MetrcApi\Models\LabTest;
 use MetrcApi\Models\Package;
-use MetrcApi\Models\PackageType;
 use MetrcApi\Models\Plant;
 use MetrcApi\Models\PlantBatch;
 use MetrcApi\Models\PlantBatchDestruction;
