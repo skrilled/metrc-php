@@ -524,7 +524,7 @@ class MetrcApi
      */
     public function getTransfers($type = 'incoming', \DateTimeInterface $startDate = null, \DateTimeInterface $stopDate = null): ?array
     {
-        $this->route = '/sales/v1/' . $type;
+        $this->route = '/transfers/v1/' . $type;
         if($startDate && $stopDate) {
             $this->queryParams['lastModifiedStart'] = $startDate->format(\DateTime::ISO8601);
             $this->queryParams['lastModifiedEnd'] = $stopDate->format(\DateTime::ISO8601);
