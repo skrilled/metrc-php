@@ -106,7 +106,7 @@ class PlantBatchDestruction extends ApiObject
     public function toArray()
     {
         return [
-            'PlantBatch' => $this->getName(),
+            'PlantBatch' => $this->getPlantBatch(),
             'Count' => $this->getCount(),
             'ReasonNote' => $this->getReasonNote(),
             'ActualDate' => $this->actualDate->format('Y-m-d')
