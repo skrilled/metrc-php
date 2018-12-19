@@ -382,12 +382,18 @@ class MetrcApi
 
     /**
      * @param string $type type filter (vegetative|flowering|onhold|inactive)
+     * @param \DateTimeInterface|null $startDate
+     * @param \DateTimeInterface|null $stopDate
      * @return array
-     * @throws \Exception|InvalidMetrcResponseException
+     * @throws InvalidMetrcResponseException
      */
-    public function getPlants($type = 'active'): ?array
+    public function getPlants($type = 'active', \DateTimeInterface $startDate = null, \DateTimeInterface $stopDate = null): ?array
     {
         $this->route = '/plants/v1/' . $type;
+        if($startDate && $stopDate) {
+            $this->queryParams['lastModifiedStart'] = $startDate->format(\DateTime::ISO8601);
+            $this->queryParams['lastModifiedEnd']   = $stopDate->format(\DateTime::ISO8601);
+        }
         $response = $this->executeAction();
         return $this->mapResponseToObjectArray($response, Plant::class);
     }
@@ -557,6 +563,7 @@ class MetrcApi
         return $response;
     }
 
+    /**
     /**
      * @param SalesReceipt $receipt
      * @return MetrcApiResponse
