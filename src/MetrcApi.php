@@ -425,6 +425,7 @@ class MetrcApi
     public function destroyPlant(Plant $plant): MetrcApiResponse
     {
         $this->route = '/plants/v1/destroyplants';
+        $this->method = 'POST';
         $response = $this->executeAction($plant);
         return $response;
     }

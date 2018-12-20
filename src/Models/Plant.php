@@ -117,4 +117,15 @@ class Plant extends ApiObject
     {
         $this->reasonNote = $reasonNote;
     }
+
+    public function toArray()
+    {
+        return [
+            'Id' => $this->getId(),
+            'Label' => $this->getLabel(),
+            'ReasonNote' => $this->getReasonNote(),
+            'Room' => $this->getRoom(),
+            'ActualDate' => $this->getActualDate()->format('Y-m-d')
+        ];
+    }
 }
