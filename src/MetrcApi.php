@@ -16,6 +16,7 @@ use MetrcApi\Models\PlantBatch;
 use MetrcApi\Models\PlantBatchDestruction;
 use MetrcApi\Models\PlantBatchPlanting;
 use MetrcApi\Models\PlantBatchPlantingGrowthPhase;
+use MetrcApi\Models\PlantHarvest;
 use MetrcApi\Models\Room;
 use MetrcApi\Models\SalesReceipt;
 use MetrcApi\Models\Strain;
@@ -444,13 +445,27 @@ class MetrcApi
     }
 
     /**
-     * @param Plant $plant
+     * @param PlantHarvest $plant
      * @return MetrcApiResponse
      * @throws InvalidMetrcResponseException
      */
-    public function manicurePlant(Plant $plant): MetrcApiResponse
+    public function manicurePlant(PlantHarvest $plant): MetrcApiResponse
     {
         $this->route = '/plants/v1/manicureplants';
+        $this->method = 'POST';
+        $response = $this->executeAction($plant);
+        return $response;
+    }
+
+    /**
+     * @param PlantHarvest $plant
+     * @return MetrcApiResponse
+     * @throws InvalidMetrcResponseException
+     */
+    public function harvestPlant(PlantHarvest $plant): MetrcApiResponse
+    {
+        $this->route = '/plants/v1/harvestplants';
+        $this->method = 'POST';
         $response = $this->executeAction($plant);
         return $response;
     }
