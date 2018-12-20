@@ -2,6 +2,7 @@
 
 namespace MetrcApi;
 
+use MetrcApi\Exception\AccessDeniedException;
 use MetrcApi\Exception\InvalidMetrcResponseException;
 use MetrcApi\Models\ApiObject;
 use MetrcApi\Models\Facility;
@@ -121,6 +122,13 @@ class MetrcApi
         $response = new MetrcApiResponse();
         $response->setRawResponse($result);
         $response->setHttpCode(curl_getinfo($ch, CURLINFO_HTTP_CODE));
+
+        if($response->getHttpCode() == 401) {
+            throw new AccessDeniedException();
+        } elseif($response->getHttpCode() == 500) {
+            throw new InvalidMetrcResponseException(isset($response->getResponse()['Message']) ? $response->getResponse()['Message'] : 'API Response Returned 500 error!');
+        }
+
         return $response;
     }
 
@@ -387,7 +395,7 @@ class MetrcApi
      * @return array
      * @throws InvalidMetrcResponseException
      */
-    public function getPlants($type = 'active', \DateTimeInterface $startDate = null, \DateTimeInterface $stopDate = null): ?array
+    public function getPlants($type = 'vegetative', \DateTimeInterface $startDate = null, \DateTimeInterface $stopDate = null): ?array
     {
         $this->route = '/plants/v1/' . $type;
         if($startDate && $stopDate) {
