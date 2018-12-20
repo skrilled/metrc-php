@@ -419,12 +419,25 @@ class MetrcApi
 
     /**
      * @param Plant $plant
-     * @return array|null
+     * @return MetrcApiResponse
      * @throws InvalidMetrcResponseException
      */
     public function destroyPlant(Plant $plant): MetrcApiResponse
     {
         $this->route = '/plants/v1/destroyplants';
+        $this->method = 'POST';
+        $response = $this->executeAction($plant);
+        return $response;
+    }
+
+    /**
+     * @param Plant $plant
+     * @return MetrcApiResponse
+     * @throws InvalidMetrcResponseException
+     */
+    public function movePlant(Plant $plant): MetrcApiResponse
+    {
+        $this->route = '/plants/v1/moveplants';
         $this->method = 'POST';
         $response = $this->executeAction($plant);
         return $response;
