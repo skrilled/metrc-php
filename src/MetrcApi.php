@@ -399,6 +399,41 @@ class MetrcApi
     }
 
     /**
+     * @return array|null
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function getPlantWasteReasons(): ?array
+    {
+        $this->route = '/plants/v1/waste/reasons';
+        $response = $this->executeAction();
+        return $response->getResponse();
+    }
+
+    /**
+     * @param Plant $plant
+     * @return array|null
+     * @throws InvalidMetrcResponseException
+     */
+    public function destroyPlant(Plant $plant): MetrcApiResponse
+    {
+        $this->route = '/plants/v1/destroyplants';
+        $response = $this->executeAction($plant);
+        return $response;
+    }
+
+    /**
+     * @param Plant $plant
+     * @return MetrcApiResponse
+     * @throws InvalidMetrcResponseException
+     */
+    public function manicurePlant(Plant $plant): MetrcApiResponse
+    {
+        $this->route = '/plants/v1/manicureplants';
+        $response = $this->executeAction($plant);
+        return $response;
+    }
+
+    /**
      * @param int|null $id
      * @return Room|null
      * @throws \Exception|InvalidMetrcResponseException
