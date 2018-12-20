@@ -31,6 +31,11 @@ class Plant extends ApiObject
      */
     public $reasonNote;
 
+    public function __construct()
+    {
+        $this->actualDate = new \DateTime();
+    }
+
     /**
      * @return int|null
      */
