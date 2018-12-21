@@ -219,6 +219,32 @@ class MetrcApi
     }
 
     /**
+     * @param Harvest $harvest
+     * @return MetrcApiResponse
+     * @throws InvalidMetrcResponseException
+     */
+    public function finishHarvest(Harvest $harvest): MetrcApiResponse
+    {
+        $this->route = '/harvests/v1/finish';
+        $this->method = 'POST';
+        $response = $this->executeAction($harvest);
+        return $response;
+    }
+
+    /**
+     * @param Harvest $harvest
+     * @return MetrcApiResponse
+     * @throws InvalidMetrcResponseException
+     */
+    public function unfinishHarvest(Harvest $harvest): MetrcApiResponse
+    {
+        $this->route = '/harvests/v1/unfinish';
+        $this->method = 'POST';
+        $response = $this->executeAction($harvest);
+        return $response;
+    }
+
+    /**
      * @param string $id
      * @return array|null
      * @throws \Exception|InvalidMetrcResponseException
