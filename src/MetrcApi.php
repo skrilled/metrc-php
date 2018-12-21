@@ -13,6 +13,7 @@ use MetrcApi\Models\Item;
 use MetrcApi\Models\ItemCategory;
 use MetrcApi\Models\LabTest;
 use MetrcApi\Models\Package;
+use MetrcApi\Models\PackageAdjustment;
 use MetrcApi\Models\PackageFinish;
 use MetrcApi\Models\Plant;
 use MetrcApi\Models\PlantBatch;
@@ -316,6 +317,19 @@ class MetrcApi
         $this->route = '/packages/v1/' . $id;
         $response = $this->executeAction();
         return $this->mapResponseToObject($response, Package::class);
+    }
+
+    /**
+     * @param PackageAdjustment $package
+     * @return MetrcApiResponse
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function adjustPackage(PackageAdjustment $package): MetrcApiResponse
+    {
+        $this->route = '/packages/v1/adjust';
+        $this->method = 'POST';
+        $response = $this->executeAction($package);
+        return $response;
     }
 
     /**
