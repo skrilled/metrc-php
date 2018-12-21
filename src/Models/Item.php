@@ -361,7 +361,7 @@ class Item extends ApiObject
         $this->servingSize = $servingSize;
     }
 
-    public function __toArray()
+    public function toArray()
     {
         return [
             'Id' => $this->getId(),
