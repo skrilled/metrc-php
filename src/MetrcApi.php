@@ -181,6 +181,9 @@ class MetrcApi
     }
 
     /**
+     * Get an array of facilities
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Facilities.get_facilities_v1
      * @return array|null
      * @throws \Exception|InvalidMetrcResponseException
      */
@@ -192,6 +195,9 @@ class MetrcApi
     }
 
     /**
+     * Get an array of harvests
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Harvests.get_harvests_v1_active
      * @param string $type type filter (active|onhold|inactive)
      * @return array|null
      * @throws \Exception|InvalidMetrcResponseException
@@ -204,6 +210,9 @@ class MetrcApi
     }
 
     /**
+     * Create a package from a harvest
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Harvests.post_harvests_v1_createpackages
      * @param HarvestPackage $package
      * @return MetrcApiResponse
      * @throws InvalidMetrcResponseException
@@ -217,6 +226,9 @@ class MetrcApi
     }
 
     /**
+     * Create waste from a Harvest
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Harvests.post_harvests_v1_removewaste
      * @param HarvestWaste $waste
      * @return MetrcApiResponse
      * @throws InvalidMetrcResponseException
@@ -230,6 +242,9 @@ class MetrcApi
     }
 
     /**
+     * Finish/Discontinue a Harvest
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Harvests.post_harvests_v1_finish
      * @param Harvest $harvest
      * @return MetrcApiResponse
      * @throws InvalidMetrcResponseException
@@ -243,6 +258,9 @@ class MetrcApi
     }
 
     /**
+     * UnFinish/Continue a Harvest
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Harvests.post_harvests_v1_unfinish
      * @param Harvest $harvest
      * @return MetrcApiResponse
      * @throws InvalidMetrcResponseException
@@ -256,6 +274,9 @@ class MetrcApi
     }
 
     /**
+     * Get information about an item
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Harvests.get_harvests_v1_{id}
      * @param string $id
      * @return array|null
      * @throws \Exception|InvalidMetrcResponseException
@@ -268,6 +289,9 @@ class MetrcApi
     }
 
     /**
+     * Get an array of items
+     *
+     * https://api-ca.metrc.com/Documentation/#Harvests.get_harvests_v1_active
      * @param string $type type filter (active|onhold|inactive)
      * @return array|null
      * @throws \Exception|InvalidMetrcResponseException
@@ -280,6 +304,9 @@ class MetrcApi
     }
 
     /**
+     * Create an item
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Items.post_items_v1_create
      * @param Item $item
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -293,6 +320,9 @@ class MetrcApi
     }
 
     /**
+     * Update an item
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Items.post_items_v1_update
      * @param Item $item
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -306,6 +336,25 @@ class MetrcApi
     }
 
     /**
+     * Delete an item
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Items.delete_items_v1_{id}
+     * @param int $id
+     * @return MetrcApiResponse
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function deleteItem(int $id): MetrcApiResponse
+    {
+        $this->route = '/items/v1/' . $id;
+        $this->method = 'DELETE';
+        $response = $this->executeAction();
+        return $response;
+    }
+
+    /**
+     * Get an array of item categories
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Items.get_items_v1_categories
      * @return array|null
      * @throws \Exception|InvalidMetrcResponseException
      */
@@ -317,6 +366,9 @@ class MetrcApi
     }
 
     /**
+     * Get information about a package
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Packages.get_packages_v1_{id}
      * @param $id
      * @return Package|null
      * @throws \Exception|InvalidMetrcResponseException
@@ -329,6 +381,9 @@ class MetrcApi
     }
 
     /**
+     * Adjust a package
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_adjust
      * @param PackageAdjustment $package
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -342,6 +397,9 @@ class MetrcApi
     }
 
     /**
+     * Change a package item
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_change_item
      * @param PackageChangeItem $package
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -355,6 +413,9 @@ class MetrcApi
     }
 
     /**
+     * Finish a package
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_finish
      * @param PackageFinish $package
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -368,6 +429,9 @@ class MetrcApi
     }
 
     /**
+     * UnFinish a package
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_unfinish
      * @param PackageFinish $package
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -381,6 +445,9 @@ class MetrcApi
     }
 
     /**
+     * Get an array of packages
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Packages.get_packages_v1_active
      * @param string $type type filter (active|onhold|inactive)
      * @return array
      * @throws \Exception|InvalidMetrcResponseException
@@ -393,6 +460,9 @@ class MetrcApi
     }
 
     /**
+     * Create a package
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Packages.post_packages_v1_create
      * @param Package $package
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -406,6 +476,9 @@ class MetrcApi
     }
 
     /**
+     * Get an array of package types
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Packages.get_packages_v1_types
      * @return array
      * @throws \Exception|InvalidMetrcResponseException
      */
@@ -417,6 +490,9 @@ class MetrcApi
     }
 
     /**
+     * Get information about a plant batch
+     *
+     * @see https://api-ca.metrc.com/Documentation/#PlantBatches.get_plantbatches_v1_{id}
      * @param int|null $id
      * @return PlantBatch|null
      * @throws \Exception|InvalidMetrcResponseException
@@ -429,6 +505,9 @@ class MetrcApi
     }
 
     /**
+     * Get an array of plant batches
+     *
+     * @see https://api-ca.metrc.com/Documentation/#PlantBatches.get_plantbatches_v1_active
      * @param string $type type filter (active|inactive)
      * @return array
      * @throws \Exception|InvalidMetrcResponseException
@@ -441,6 +520,9 @@ class MetrcApi
     }
 
     /**
+     * Create a planting in a batch
+     *
+     * @see https://api-ca.metrc.com/Documentation/#PlantBatches.post_plantbatches_v1_createplantings
      * @param PlantBatchPlanting $planting
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -454,6 +536,9 @@ class MetrcApi
     }
 
     /**
+     * Create an array of plantings in a batch
+     *
+     * @see https://api-ca.metrc.com/Documentation/#PlantBatches.post_plantbatches_v1_createplantings
      * @param array $plantings
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -469,6 +554,9 @@ class MetrcApi
     }
 
     /**
+     * Change the growth phase of a plant batch
+     *
+     * @see https://api-ca.metrc.com/Documentation/#PlantBatches.post_plantbatches_v1_changegrowthphase
      * @param PlantBatchPlantingGrowthPhase $planting
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -482,6 +570,9 @@ class MetrcApi
     }
 
     /**
+     * Destroy a plant batch
+     *
+     * @see https://api-ca.metrc.com/Documentation/#PlantBatches.post_plantbatches_v1_destroy
      * @param PlantBatchDestruction $batchDestruction
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -495,11 +586,14 @@ class MetrcApi
     }
 
     /**
-     * @param int|null $id
+     * Get information about a plant
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Plants.get_plants_v1_{id}
+     * @param int $id
      * @return Room|null
      * @throws \Exception|InvalidMetrcResponseException
      */
-    public function getPlant(?int $id): ?Plant
+    public function getPlant(int $id): ?Plant
     {
         $this->route = '/plants/v1/' . $id;
         $response = $this->executeAction();
@@ -507,6 +601,9 @@ class MetrcApi
     }
 
     /**
+     * Get an array of plants
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Plants.get_plants_v1_vegetative
      * @param string $type type filter (vegetative|flowering|onhold|inactive)
      * @param \DateTimeInterface|null $startDate
      * @param \DateTimeInterface|null $stopDate
@@ -525,6 +622,9 @@ class MetrcApi
     }
 
     /**
+     * Get an array of plant waste reasons
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Plants.get_plants_v1_waste_reasons
      * @return array|null
      * @throws \Exception|InvalidMetrcResponseException
      */
@@ -536,6 +636,9 @@ class MetrcApi
     }
 
     /**
+     * Destroy a plant
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Plants.post_plants_v1_destroyplants
      * @param Plant $plant
      * @return MetrcApiResponse
      * @throws InvalidMetrcResponseException
@@ -549,6 +652,9 @@ class MetrcApi
     }
 
     /**
+     * Move a plant to another room
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Plants.post_plants_v1_moveplants
      * @param Plant $plant
      * @return MetrcApiResponse
      * @throws InvalidMetrcResponseException
@@ -562,6 +668,9 @@ class MetrcApi
     }
 
     /**
+     * Manicure a plant
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Plants.post_plants_v1_manicureplants
      * @param PlantHarvest $plant
      * @return MetrcApiResponse
      * @throws InvalidMetrcResponseException
@@ -575,6 +684,9 @@ class MetrcApi
     }
 
     /**
+     * Harvest a plant
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Plants.post_plants_v1_harvestplants
      * @param PlantHarvest $plant
      * @return MetrcApiResponse
      * @throws InvalidMetrcResponseException
@@ -588,11 +700,14 @@ class MetrcApi
     }
 
     /**
-     * @param int|null $id
+     * Get information about a room
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Rooms.get_rooms_v1_{id}
+     * @param int $id
      * @return Room|null
      * @throws \Exception|InvalidMetrcResponseException
      */
-    public function getRoom(?int $id): ?Room
+    public function getRoom(int $id): ?Room
     {
         $this->route = '/rooms/v1/' . $id;
         $response = $this->executeAction();
@@ -600,6 +715,9 @@ class MetrcApi
     }
 
     /**
+     * Get an array of rooms
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Rooms.get_rooms_v1_active
      * @param string $type type filter (active|onhold|inactive)
      * @return array
      * @throws \Exception|InvalidMetrcResponseException
@@ -612,6 +730,9 @@ class MetrcApi
     }
 
     /**
+     * Create a room
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Rooms.post_rooms_v1_create
      * @param Room $room
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -625,6 +746,9 @@ class MetrcApi
     }
 
     /**
+     * Update a room
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Rooms.post_rooms_v1_update
      * @param Room $room
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -638,6 +762,9 @@ class MetrcApi
     }
 
     /**
+     * Delete a room
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Rooms.delete_rooms_v1_{id}
      * @param int|null $id
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -651,6 +778,9 @@ class MetrcApi
     }
 
     /**
+     * Get information about a strain
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Strains.get_strains_v1_{id}
      * @param $id
      * @return array
      * @throws \Exception|InvalidMetrcResponseException
@@ -663,6 +793,9 @@ class MetrcApi
     }
 
     /**
+     * Get a list of strains
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Strains.get_strains_v1_active
      * @return array
      * @throws \Exception|InvalidMetrcResponseException
      */
@@ -674,11 +807,14 @@ class MetrcApi
     }
 
     /**
-     * @param train $strain
+     * Create a strain
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Strains.post_strains_v1_create
+     * @param Strain $strain
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
      */
-    public function createStrain(train $strain): MetrcApiResponse
+    public function createStrain(Strain $strain): MetrcApiResponse
     {
         $this->route = '/strains/v1/create';
         $this->method = 'POST';
@@ -687,6 +823,9 @@ class MetrcApi
     }
 
     /**
+     * Update a strain
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Strains.post_strains_v1_update
      * @param strain $strain
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -700,6 +839,9 @@ class MetrcApi
     }
 
     /**
+     * Delete a strain
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Strains.delete_strains_v1_{id}
      * @param int|null $id
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -713,6 +855,9 @@ class MetrcApi
     }
 
     /**
+     * Get information about a sales receipt
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Sales.get_sales_v1_receipts_{id}
      * @param $id
      * @return array
      * @throws InvalidMetrcResponseException
@@ -725,6 +870,9 @@ class MetrcApi
     }
 
     /**
+     * Get an array of receipts between two date ranges
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Sales.get_sales_v1_receipts
      * @param \DateTimeInterface $startDate
      * @param \DateTimeInterface $stopDate
      * @return array
@@ -740,6 +888,9 @@ class MetrcApi
     }
 
     /**
+     * Create a sales receipt
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Sales.post_sales_v1_receipts
      * @param SalesReceipt $receipt
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -753,6 +904,9 @@ class MetrcApi
     }
 
     /**
+     * Update a sales receipt
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Sales.put_sales_v1_receipts
      * @param SalesReceipt $receipt
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -766,6 +920,9 @@ class MetrcApi
     }
 
     /**
+     * Delete a sales receipt
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Sales.delete_sales_v1_receipts_{id}
      * @param $id
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -779,6 +936,9 @@ class MetrcApi
     }
 
     /**
+     * Get an array of lab test types
+     *
+     * @see https://api-ca.metrc.com/Documentation/#LabTests.get_labtests_v1_types
      * @return array|null
      * @throws \Exception|InvalidMetrcResponseException
      */
@@ -790,6 +950,9 @@ class MetrcApi
     }
 
     /**
+     * Record a lab test result
+     *
+     * @see https://api-ca.metrc.com/Documentation/#LabTests.post_labtests_v1_record
      * @param LabTest $labTest
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
@@ -803,7 +966,10 @@ class MetrcApi
     }
 
     /**
-     * @param string $type
+     * Get an array of transfers
+     *
+     * @see https://api-ca.metrc.com/Documentation/#Transfers.get_transfers_v1_incoming
+     * @param string $type type filter (incoming|outgoing|rejected)
      * @param \DateTimeInterface $startDate
      * @param \DateTimeInterface $stopDate
      * @return array
