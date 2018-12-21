@@ -13,6 +13,7 @@ use MetrcApi\Models\Item;
 use MetrcApi\Models\ItemCategory;
 use MetrcApi\Models\LabTest;
 use MetrcApi\Models\Package;
+use MetrcApi\Models\PackageFinish;
 use MetrcApi\Models\Plant;
 use MetrcApi\Models\PlantBatch;
 use MetrcApi\Models\PlantBatchDestruction;
@@ -315,6 +316,30 @@ class MetrcApi
         $this->route = '/packages/v1/' . $id;
         $response = $this->executeAction();
         return $this->mapResponseToObject($response, Package::class);
+    }
+
+    /**
+     * @param PackageFinish $package
+     * @return MetrcApiResponse
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function finishPackage(PackageFinish $package): MetrcApiResponse
+    {
+        $this->route = '/packages/v1/finish';
+        $response = $this->executeAction($package);
+        return $response;
+    }
+
+    /**
+     * @param PackageFinish $package
+     * @return MetrcApiResponse
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function unfinishPackage(PackageFinish $package): MetrcApiResponse
+    {
+        $this->route = '/packages/v1/unfinish';
+        $response = $this->executeAction($package);
+        return $response;
     }
 
     /**
