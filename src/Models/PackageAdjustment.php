@@ -30,6 +30,16 @@ class PackageAdjustment extends ApiObject
     public $reasonNote;
 
     /**
+     * @var \DateTimeInterface
+     */
+    public $actualDate;
+
+    public function __construct()
+    {
+        $this->actualDate = new \DateTime();
+    }
+
+    /**
      * @return string
      */
     public function getLabel(): string
@@ -109,6 +119,22 @@ class PackageAdjustment extends ApiObject
         $this->reasonNote = $reasonNote;
     }
 
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getActualDate(): \DateTimeInterface
+    {
+        return $this->actualDate;
+    }
+
+    /**
+     * @param \DateTimeInterface $actualDate
+     */
+    public function setActualDate(\DateTimeInterface $actualDate): void
+    {
+        $this->actualDate = $actualDate;
+    }
+
     public function toArray()
     {
         return [
@@ -116,6 +142,7 @@ class PackageAdjustment extends ApiObject
             'Quantity' => $this->getQuantity(),
             'UnitOfMeasure' => $this->getUnitOfMeasure(),
             'AdjustmentReason' => $this->getAdjustmentReason(),
+            'ActualDate' => $this->getActualDate()->format('Y-m-d'),
             'ReasonNote' => $this->getReasonNote()
         ];
     }
