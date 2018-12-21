@@ -265,7 +265,7 @@ class Package extends ApiObject
         $this->ingredients = $ingredients;
     }
 
-    public function __toArray()
+    public function toArray()
     {
         return [
             'Tag' => $this->getTag(),
