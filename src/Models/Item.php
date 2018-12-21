@@ -378,6 +378,7 @@ class Item extends ApiObject
             'UnitThcContent' => $this->getUnitThcContent(),
             'UnitThcContentUnitOfMeasure' => $this->getUnitThcContentUnitOfMeasure(),
             'UnitVolume' => $this->getUnitVolume(),
+            'UnitWeight' => $this->getUnitWeight(),
             'UnitWeightUnitOfMeasure' => $this->getUnitVolumeUnitOfMeasure(),
             'ServingSize' => $this->getServingSize(),
             'SupplyDurationDays' => null, // no examples provided in documentation
