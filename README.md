@@ -15,6 +15,7 @@ composer require alternatehealth/metrc
 ```php
 <?php
 
+// 3rd and 4th optional parameters are $sandbox (bool) and $state (string, defaults to 'ca' for california)
 $api = new \MetrcApi\MetrcApi('username', 'password', 'licenseNumber');
 
 $facilities = $api->getFacilities();
