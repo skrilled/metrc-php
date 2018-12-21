@@ -715,7 +715,6 @@ class MetrcApi
     }
 
     /**
-    /**
      * @param SalesReceipt $receipt
      * @return MetrcApiResponse
      * @throws \Exception|InvalidMetrcResponseException
