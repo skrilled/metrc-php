@@ -379,7 +379,7 @@ class Item extends ApiObject
             'UnitThcContentUnitOfMeasure' => $this->getUnitThcContentUnitOfMeasure(),
             'UnitVolume' => $this->getUnitVolume(),
             'UnitWeight' => $this->getUnitWeight(),
-            'UnitWeightUnitOfMeasure' => $this->getUnitVolumeUnitOfMeasure(),
+            'UnitWeightUnitOfMeasure' => $this->getUnitWeightUnitOfMeasure(),
             'ServingSize' => $this->getServingSize(),
             'SupplyDurationDays' => null, // no examples provided in documentation
             'Ingredients' => null // no examples provided in documentation
