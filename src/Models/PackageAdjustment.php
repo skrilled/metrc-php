@@ -32,11 +32,11 @@ class PackageAdjustment extends ApiObject
     /**
      * @var \DateTimeInterface
      */
-    public $actualDate;
+    public $adjustmentDate;
 
     public function __construct()
     {
-        $this->actualDate = new \DateTime();
+        $this->adjustmentDate = new \DateTime();
     }
 
     /**
@@ -122,17 +122,17 @@ class PackageAdjustment extends ApiObject
     /**
      * @return \DateTimeInterface
      */
-    public function getActualDate(): \DateTimeInterface
+    public function getAdjustmentDate(): \DateTimeInterface
     {
-        return $this->actualDate;
+        return $this->adjustmentDate;
     }
 
     /**
-     * @param \DateTimeInterface $actualDate
+     * @param \DateTimeInterface $adjustmentDate
      */
-    public function setActualDate(\DateTimeInterface $actualDate): void
+    public function setAdjustmentDate(\DateTimeInterface $adjustmentDate): void
     {
-        $this->actualDate = $actualDate;
+        $this->adjustmentDate = $adjustmentDate;
     }
 
     public function toArray()
@@ -142,7 +142,7 @@ class PackageAdjustment extends ApiObject
             'Quantity' => $this->getQuantity(),
             'UnitOfMeasure' => $this->getUnitOfMeasure(),
             'AdjustmentReason' => $this->getAdjustmentReason(),
-            'ActualDate' => $this->getActualDate()->format('Y-m-d'),
+            'AdjustmentDate' => $this->getAdjustmentDate()->format('Y-m-d'),
             'ReasonNote' => $this->getReasonNote()
         ];
     }
