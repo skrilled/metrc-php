@@ -985,5 +985,4 @@ class MetrcApi
         $response = $this->executeAction();
         return $this->mapResponseToObjectArray($response, Transfer::class);
     }
-
 }
