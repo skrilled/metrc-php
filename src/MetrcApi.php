@@ -29,8 +29,8 @@ use MetrcApi\Models\Transfer;
 
 class MetrcApi
 {
-    const SANDBOX_URL = 'https://sandbox-api-ca.metrc.com';
-    const PRODUCTION_URL = 'https://api-ca.metrc.com';
+    const SANDBOX_URL = 'https://sandbox-api-%state%.metrc.com';
+    const PRODUCTION_URL = 'https://api-%state%.metrc.com';
 
     /**
      * @var string
@@ -62,6 +62,11 @@ class MetrcApi
      */
     private $route = null;
 
+    /**
+     * @var string
+     */
+    private $state;
+
     private $queryParams;
 
     /**
@@ -69,9 +74,10 @@ class MetrcApi
      * @param string $username
      * @param string $password
      * @param string $licenseNumber
-     * @param bool|null $sandbox
+     * @param bool $sandbox
+     * @param string $state
      */
-    public function __construct($username, $password, $licenseNumber, $sandbox = false)
+    public function __construct(string $username, string $password, string $licenseNumber, bool $sandbox = false, string $state = 'ca')
     {
         $this->username      = $username;
         $this->password      = $password;
@@ -80,6 +86,7 @@ class MetrcApi
         $this->queryParams   = [
             'licenseNumber' => $this->licenseNumber
         ];
+        $this->state = $state;
     }
 
     /**
@@ -90,6 +97,7 @@ class MetrcApi
     private function executeAction($obj = false): MetrcApiResponse
     {
         $base = $this->sandbox ? self::SANDBOX_URL : self::PRODUCTION_URL;
+        $base = str_replace('%state%', $this->state, $base);
 
         $ch = curl_init($base.$this->route.'?'.http_build_query($this->queryParams));
         curl_setopt_array($ch, [
