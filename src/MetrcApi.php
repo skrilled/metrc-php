@@ -326,6 +326,7 @@ class MetrcApi
     public function finishPackage(PackageFinish $package): MetrcApiResponse
     {
         $this->route = '/packages/v1/finish';
+        $this->method = 'POST';
         $response = $this->executeAction($package);
         return $response;
     }
@@ -338,6 +339,7 @@ class MetrcApi
     public function unfinishPackage(PackageFinish $package): MetrcApiResponse
     {
         $this->route = '/packages/v1/unfinish';
+        $this->method = 'POST';
         $response = $this->executeAction($package);
         return $response;
     }
