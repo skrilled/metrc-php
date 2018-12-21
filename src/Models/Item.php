@@ -5,6 +5,11 @@ namespace MetrcApi\Models;
 class Item extends ApiObject
 {
     /**
+     * @var int|null
+     */
+    public $id = null;
+
+    /**
      * @var string
      */
     public $itemCategory;
@@ -83,6 +88,22 @@ class Item extends ApiObject
      * @var null
      */
     public $servingSize = null;
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
 
     /**
      * @return string
@@ -343,6 +364,7 @@ class Item extends ApiObject
     public function __toArray()
     {
         return [
+            'Id' => $this->getId(),
             'ItemCategory' => $this->getItemCategory(),
             'Name' => $this->getName(),
             'UnitOfMeasure' => $this->getUnitOfMeasure(),
