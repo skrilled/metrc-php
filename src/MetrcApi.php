@@ -8,6 +8,7 @@ use MetrcApi\Models\ApiObject;
 use MetrcApi\Models\Facility;
 use MetrcApi\Models\Harvest;
 use MetrcApi\Models\HarvestPackage;
+use MetrcApi\Models\HarvestWaste;
 use MetrcApi\Models\Item;
 use MetrcApi\Models\ItemCategory;
 use MetrcApi\Models\LabTest;
@@ -201,6 +202,19 @@ class MetrcApi
         $this->route = '/harvests/v1/createpackages';
         $this->method = 'POST';
         $response = $this->executeAction($package);
+        return $response;
+    }
+
+    /**
+     * @param HarvestWaste $waste
+     * @return MetrcApiResponse
+     * @throws InvalidMetrcResponseException
+     */
+    public function createHarvestWaste(HarvestWaste $waste): MetrcApiResponse
+    {
+        $this->route = '/harvests/v1/removewaste';
+        $this->method = 'POST';
+        $response = $this->executeAction($waste);
         return $response;
     }
 
