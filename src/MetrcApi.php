@@ -985,4 +985,18 @@ class MetrcApi
         $response = $this->executeAction();
         return $this->mapResponseToObjectArray($response, Transfer::class);
     }
+
+    /**
+     * Get an array of lab test types
+     *
+     * @see https://api-ca.metrc.com/Documentation/#UnitsOfMeasure.get_unitsofmeasure_v1_active
+     * @return array|null
+     * @throws \Exception|InvalidMetrcResponseException
+     */
+    public function getUnitsOfMeasure(): ?array
+    {
+        $this->route = '/unitsofmeasure/v1/active';
+        $response = $this->executeAction();
+        return $response->getResponse();
+    }
 }
